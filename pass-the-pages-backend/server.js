@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('./db'); // import the DB connection
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json()); // Middleware to parse JSON requests
 
 const port = 5000; // or any port you choose
@@ -103,22 +105,27 @@ app.get('/profile', verifyToken, async (req, res) => {
 });
 
 // Book listing route (for authenticated users)
-app.post('/books', verifyToken, async (req, res) => {
-    const { title, author, course_relevance, condition, description } = req.body;
-    const owner_user_id = req.user.user_id;
-
+app.post('/books', async (req, res) => {
     try {
-        const result = await pool.query(
-            'INSERT INTO books (title, author, course_relevance, condition, description, owner_user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-            [title, author, course_relevance, condition, description, owner_user_id]
+        const { title, author, course_relevance, condition, description } = req.body;
+        const newBook = await pool.query(
+            "INSERT INTO books (title, author, course_relevance, condition, description) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+            [title, author, course_relevance, condition, description]
         );
-        const book = result.rows[0];
-        res.json(book);
+
+        // Send a success response with the added book details
+        res.status(201).json({ 
+            message: "Book added successfully!", 
+            book: newBook.rows[0] 
+        });
+
     } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Internal Server Error' });
+        console.error(err.message);
+        res.status(500).json({ message: "Server error. Failed to add book." });
     }
 });
+
+
 
 // Get list of books
 app.get('/books', async (req, res) => {
