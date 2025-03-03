@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate a Book - Pass the Papers</title>
+</head>
+<body>
+    <h2>Donate a Book</h2>
+    <form id="donateForm">
+        <input type="text" id="title" placeholder="Book Title" required>
+        <input type="text" id="author" placeholder="Author" required>
+        <textarea id="description" placeholder="Short Description" required></textarea>
+        <button type="submit">Donate</button>
+    </form>
+
+    <button onclick="window.location.href='books.html'">Back to Store</button>
+
+    <script>
+        function checkLogin() {
+            if (!localStorage.getItem("userId")) {
+                alert("You must log in first!");
+                window.location.href = "index.html";
+            }
+        }
+
+        document.getElementById("donateForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const userId = localStorage.getItem("userId");
+
+            const formData = new URLSearchParams();
+            formData.append("title", document.getElementById("title").value);
+            formData.append("author", document.getElementById("author").value);
+            formData.append("description", document.getElementById("description").value);
+            formData.append("donor_id", userId);
+
+            const response = await fetch("donate_book.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: formData.toString()
+            });
+
+            const data = await response.json();
+            alert(data.message || data.error);
+
+            if (data.message) {
+                window.location.href = "books.html"; // Redirect to store after donation
+            }
+        });
+
+        window.onload = checkLogin;
+    </script>
+</body>
+</html>

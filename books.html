@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books - Pass the Papers</title>
+    <script>
+        function checkLogin() {
+            if (!localStorage.getItem("userId")) {
+                alert("You must log in first!");
+                window.location.href = "index.html";
+            }
+        }
+
+        async function loadBooks() {
+            const response = await fetch("get_books.php");
+            const books = await response.json();
+            const bookList = document.getElementById("bookList");
+
+            books.forEach(book => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <strong>${book.title}</strong> by ${book.author}
+                    <p>${book.description}</p>
+                    <button onclick="addToCart(${book.id}, '${book.title}')">Add to Cart</button>
+                `;
+                bookList.appendChild(li);
+            });
+        }
+
+        function addToCart(bookId, bookTitle) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            
+            // Check if book is already in cart
+            if (cart.some(book => book.id === bookId)) {
+                alert("This book is already in your cart!");
+                return;
+            }
+
+            cart.push({ id: bookId, title: bookTitle });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${bookTitle} added to cart!`);
+        }
+
+        function viewCart() {
+            window.location.href = "cart.html";
+        }
+
+        function donateBook() {
+            window.location.href = "donate.html";
+        }
+
+        function viewMyBooks() {
+            window.location.href = "my_books.html";
+        }
+
+        function logout() {
+    localStorage.clear();
+    alert("Logged out successfully!");
+    window.location.href = "login.html"; // Redirect to login page
+}
+
+
+        window.onload = function() {
+            checkLogin();
+            loadBooks();
+        };
+    </script>
+</head>
+<body>
+    <h2>Available Books</h2>
+    <ul id="bookList"></ul>
+
+    <!-- Buttons Section -->
+    <button onclick="viewCart()">View Cart</button>
+    <button onclick="donateBook()">Donate a Book</button>
+    <button onclick="viewMyBooks()">My Claimed Books</button>
+    <button onclick="logout()">Logout</button>
+</body>
+</html>

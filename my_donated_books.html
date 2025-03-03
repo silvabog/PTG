@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Donated Books - Pass the Papers</title>
+    <script>
+        function checkLogin() {
+            if (!localStorage.getItem("userId")) {
+                alert("You must log in first!");
+                window.location.href = "login.html";
+            }
+        }
+
+        async function loadDonatedBooks() {
+            const userId = localStorage.getItem("userId");
+            const response = await fetch(`get_donated_books.php?user_id=${userId}`);
+            const books = await response.json();
+            const bookList = document.getElementById("bookList");
+
+            bookList.innerHTML = ""; // Clear previous results
+
+            if (books.length === 0) {
+                bookList.innerHTML = "<p>You haven't donated any books yet.</p>";
+            } else {
+                books.forEach(book => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<strong>${book.title}</strong> by ${book.author} <p>${book.description}</p>`;
+                    bookList.appendChild(li);
+                });
+            }
+        }
+
+        function goBack() {
+            window.location.href = "books.html";
+        }
+
+        function logout() {
+            localStorage.clear();
+            alert("Logged out successfully!");
+            window.location.href = "login.html";
+        }
+
+        window.onload = function() {
+            checkLogin();
+            loadDonatedBooks();
+        };
+    </script>
+</head>
+<body>
+    <h2>My Donated Books</h2>
+    <ul id="bookList"></ul>
+    <button onclick="goBack()">Back to Store</button>
+    <button onclick="logout()">Logout</button>
+</body>
+</html>

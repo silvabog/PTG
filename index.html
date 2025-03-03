@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Pass the Papers</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            
+            const formData = new URLSearchParams();
+            formData.append("email", document.getElementById("loginEmail").value);
+            formData.append("password", document.getElementById("loginPassword").value);
+
+            try {
+                const response = await fetch("http://localhost/passthepapers/login.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: formData.toString()
+                });
+
+                const data = await response.json();
+
+                if (data.message) {
+                    // Store user ID in localStorage for session management
+                    localStorage.setItem("userId", data.user.id);
+                    localStorage.setItem("userEmail", data.user.email);
+                    alert("Login successful!");
+                    window.location.href = "books.html"; // Redirect to store page
+                } else {
+                    alert(data.error || "Login failed.");
+                }
+            } catch (error) {
+                alert("Error connecting to server.");
+            }
+        });
+    </script>
+</body>
+</html>
