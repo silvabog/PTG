@@ -142,3 +142,42 @@ app.get('/books', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+// Send a message
+app.post('/messages', async (req, res) => {
+    try {
+        const { sender_id, receiver_id, content } = req.body;
+
+        const newMessage = await pool.query(
+            "INSERT INTO messages (sender_id, receiver_id, content) VALUES ($1, $2, $3) RETURNING *",
+            [sender_id, receiver_id, content]
+        );
+
+        res.status(201).json({ 
+            message: "Message sent successfully!", 
+            data: newMessage.rows[0] 
+        });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: "Failed to send message." });
+    }
+});
+
+// Fetch messages for a user
+app.get('/messages/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const messages = await pool.query(
+            "SELECT * FROM messages WHERE sender_id = $1 OR receiver_id = $1 ORDER BY timestamp DESC",
+            [userId]
+        );
+
+        res.json(messages.rows);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: "Failed to retrieve messages." });
+    }
+});

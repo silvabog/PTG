@@ -47,6 +47,21 @@
     <button onclick="fetchBooks()">Refresh Books</button>
     <ul id="bookList"></ul>
 
+
+    <h2>Send a Message</h2>
+<form id="sendMessageForm">
+    <input type="text" id="receiverId" placeholder="Receiver ID" required>
+    <input type="text" id="messageContent" placeholder="Message" required>
+    <button type="submit">Send Message</button>
+</form>
+<p id="messageStatus"></p>
+
+<h2>Your Messages</h2>
+<input type="text" id="userId" placeholder="Your User ID">
+<button onclick="fetchMessages()">View Messages</button>
+<ul id="messagesList"></ul>
+
+
     <script src="script.js"></script>
 </body>
 </html>
