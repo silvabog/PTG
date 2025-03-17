@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Book Swap</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navbar (Dynamically Loaded) -->
+  <div id="navbar-container"></div>
+
+  <!-- Signup Form -->
+  <div class="container">
+    <h3 class="center-align">Create an Account</h3>
+    <form>
+      <div class="input-field">
+        <input type="text" id="full-name" required>
+        <label for="full-name">Full Name</label>
+      </div>
+      <div class="input-field">
+        <input type="email" id="email" required>
+        <label for="email">Kean Email</label>
+      </div>
+      <div class="input-field">
+        <input type="password" id="password" required>
+        <label for="password">Password</label>
+      </div>
+      <button class="btn blue waves-effect waves-light center-align" type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <!-- Materialize JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+  <!-- Load Navbar -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("navbar-container").innerHTML = data;
+          var elems = document.querySelectorAll(".sidenav");
+          M.Sidenav.init(elems);
+        });
+    });
+  </script>
+
+</body>
+</html>

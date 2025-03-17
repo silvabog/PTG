@@ -1,0 +1,140 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #aaa6a6;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navbar Styling */
+  nav {
+    background-color: #1976d2 !important;
+  }
+  
+  nav .brand-logo {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: url('https://source.unsplash.com/1600x900/?books,library') center/cover;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+  }
+  
+  .hero h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero input {
+    width: 60%;
+    max-width: 400px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  /* Featured Books Section */
+  .featured-books {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .featured-books h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Book List */
+  .book-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .book-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  .book-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .book-card h4 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .book-card p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .hero h2 {
+      font-size: 1.5rem;
+    }
+  
+    .hero input {
+      width: 80%;
+    }
+  
+    .book-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+ /* Hero Section */
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('https://source.unsplash.com/1600x900/?books,library') center/cover;
+    color: white;
+    padding: 20px;
+  }
+  
+  .hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .hero p2 {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    color: red;
+  }
+  
+  .hero .btn-large {
+    font-size: 1.3rem;
+    padding: 15px 30px;
+    border-radius: 5px;
+  }
+
+  
+  

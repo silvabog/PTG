@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pass The Pages - Home</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar Container (Loaded Dynamically) -->
+  <div id="navbar-container"></div>
+
+  <!-- Hero Section -->
+  <section class="hero center-align">
+    <h2>Recycle Books with Students Near You!</h2>
+    <input type="text" placeholder="Search for a book..." class="browser-default">
+  </section>
+
+    <!-- General info about website -->
+     <section class=" hero center-align">
+      <h2> What is Pass The Pages?</h2>
+      <p>
+        This is a book donation website for students to donate books they don’t use anymore. Many students struggle with the high costs of textbooks, while others have old books they no longer need. 
+        This platform provides a peer-to-peer exchange system that connects students within the same campus or nearby locations, allowing them to reduce waste, save money, and promote a circular economy for academic materials. 
+        There is a gratitud tip option but it’s not mandatory to do.
+      </p>
+      <p2> **THIS IS A COLLEGE STUDENT-ONLY WEBSITE TO AVOID THE RESELL OF BOOKS BY PEOPLE WHO ARE NOT STUDENTS.**</p2>
+     </section>
+
+  <!-- Featured Books Section -->
+  <section class="featured-books container">
+    <h3>Featured Books</h3>
+    <div class="book-list">
+      <!-- Books will be added dynamically here -->
+    </div>
+  </section>
+
+  <!-- Materialize JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+  <!-- Load Navbar Dynamically -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("navbar-container").innerHTML = data;
+          var elems = document.querySelectorAll(".sidenav");
+          M.Sidenav.init(elems);
+        });
+    });
+  </script>
+
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+
+<!-- Hero Section -->
+<section class="hero center-align">
+    <h2>Recycle Books with Students Near You!</h2>
+    <p>Join our book swap community and start saving on books today.</p>
+    <p2> *ONLY FOR COLLEGE STUDENTS*</p2>
+    <a href="signup.html" class="btn-large blue waves-effect waves-light">Create an Account</a>
+  </section>
+  
+  
+
+</body>
+</html>
