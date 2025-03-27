@@ -20,16 +20,16 @@
     <input type="text" placeholder="Search for a book..." class="browser-default">
   </section>
 
-    <!-- General info about website -->
-    <section class="hero center-align">
-      <h2> What is Pass The Pages?</h2>
-      <p>
-        This is a book donation website for students to donate books they don’t use anymore. Many students struggle with the high costs of textbooks, while others have old books they no longer need. 
-        This platform provides a peer-to-peer exchange system that connects students within the same campus or nearby locations, allowing them to reduce waste, save money, and promote a circular economy for academic materials. 
-        There is a gratitud tip option but it’s not mandatory to do.
-      </p>
-      <p2> **THIS IS A COLLEGE STUDENT-ONLY WEBSITE TO AVOID THE RESELL OF BOOKS BY PEOPLE WHO ARE NOT STUDENTS.**</p2>
-     </section>
+  <!-- General info about website -->
+  <section class="hero center-align">
+    <h2> What is Pass The Pages?</h2>
+    <p>
+      This is a book donation website for students to donate books they don’t use anymore. Many students struggle with the high costs of textbooks, while others have old books they no longer need. 
+      This platform provides a peer-to-peer exchange system that connects students within the same campus or nearby locations, allowing them to reduce waste, save money, and promote a circular economy for academic materials. 
+      There is a gratitude tip option, but it’s not mandatory to do.
+    </p>
+    <p2> **THIS IS A COLLEGE STUDENT-ONLY WEBSITE TO AVOID THE RESELL OF BOOKS BY PEOPLE WHO ARE NOT STUDENTS.**</p2>
+  </section>
 
   <!-- Featured Books Section -->
   <section class="featured-books container">
@@ -40,32 +40,10 @@
   </section>
 
   <!-- Materialize JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-<!-- Load Navbar Dynamically -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    fetch("navbar.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("navbar-container").innerHTML = data;
-        var elemsSidenav = document.querySelectorAll(".sidenav");
-        M.Sidenav.init(elemsSidenav);
-
-        // Initialize Dropdown for 'My Account' dropdown (ensuring hover works)
-        var dropdownElems = document.querySelectorAll('.dropdown-trigger');
-        M.Dropdown.init(dropdownElems, {
-          hover: true, // Ensure hover functionality
-          alignment: 'right', // Align dropdown to the right
-          coverTrigger: false, // Ensures dropdown is properly aligned
-        });
-      });
-  });
-</script>
-
-
-  <!-- Custom JavaScript -->
+  <!-- Load Navbar Dynamically (External Script) -->
   <script src="script.js"></script>
 
   <!-- Hero Section -->

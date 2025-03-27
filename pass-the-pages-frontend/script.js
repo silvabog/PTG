@@ -1,8 +1,8 @@
 const apiUrl = "http://localhost:5000"; 
 let authToken = "";
 
-//book list
-document.addEventListener("DOMContentLoaded", function () {
+// Function to handle book listing
+function displayBooks() {
     const bookList = document.querySelector(".book-list");
 
     const books = [
@@ -21,11 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
         bookCard.classList.add("book-card");
         bookList.appendChild(bookCard);
     });
-});
-
+}
 
 // Login User
-document.getElementById("loginForm").addEventListener("submit", async (event) => {
+document.getElementById("loginForm")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
@@ -38,7 +37,7 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
 
     const data = await response.json();
     if (data.token) {
-        authToken = data.token; 
+        authToken = data.token;
         document.getElementById("loginMessage").innerText = "Login Successful!";
         window.location.href = "index.html";
     } else {
@@ -46,9 +45,8 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
     }
 });
 
-
 // Register User
-document.getElementById("registerForm").addEventListener("submit", async (event) => {
+document.getElementById("registerForm")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const username = document.getElementById("regUsername").value;
     const email = document.getElementById("regEmail").value;
@@ -66,23 +64,27 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
     document.getElementById("registerMessage").innerText = data.message || "Registration failed";
 });
 
-
+// Fetch Navbar HTML and Initialize Materialize Components
 document.addEventListener("DOMContentLoaded", function () {
-    // Load navbar.html dynamically
+    // Load navbar dynamically
     fetch("navbar.html")
       .then(response => response.text())
       .then(data => {
         document.getElementById("navbar-container").innerHTML = data;
-  
-        // Initialize Sidenav for mobile menu
-        var elems = document.querySelectorAll(".sidenav");
-        M.Sidenav.init(elems);
-  
-        // Initialize Dropdown for My Account section (on click, not hover)
+
+        // Initialize Sidenav and Dropdown
+        var elemsSidenav = document.querySelectorAll(".sidenav");
+        M.Sidenav.init(elemsSidenav);
+
         var dropdownElems = document.querySelectorAll('.dropdown-trigger');
-        M.Dropdown.init(dropdownElems);
+        M.Dropdown.init(dropdownElems, {
+          hover: true, // Ensure hover functionality
+          alignment: 'right', // Align dropdown to the right
+          coverTrigger: false, // Ensure proper dropdown alignment
+        });
       });
-  });
-  
-  
-  
+
+    // Display book list (static example books for now)
+    displayBooks();
+});
+
