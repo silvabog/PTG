@@ -181,3 +181,40 @@ app.get('/messages/:userId', async (req, res) => {
         res.status(500).json({ message: "Failed to retrieve messages." });
     }
 });
+
+
+// Make a transaction (tip/donation)
+app.post('/transactions', verifyToken, async (req, res) => {
+    try {
+        const { receiver_id, book_id, amount } = req.body;
+        const sender_id = req.user.user_id; // Authenticated user
+
+        const newTransaction = await pool.query(
+            "INSERT INTO transactions (sender_id, receiver_id, book_id, amount) VALUES ($1, $2, $3, $4) RETURNING *",
+            [sender_id, receiver_id, book_id, amount]
+        );
+
+        res.status(201).json({ message: "Transaction successful!", transaction: newTransaction.rows[0] });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Transaction failed." });
+    }
+});
+
+// Get transactions for a user
+app.get('/transactions/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const transactions = await pool.query(
+            "SELECT * FROM transactions WHERE sender_id = $1 OR receiver_id = $1 ORDER BY timestamp DESC",
+            [userId]
+        );
+
+        res.json(transactions.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to fetch transactions." });
+    }
+});
