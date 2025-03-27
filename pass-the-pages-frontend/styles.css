@@ -12,7 +12,7 @@
      Navbar Styling
      ========================== */
   nav {
-    background-color: rgb(5, 56, 109) !important;
+    background-color: rgb(14, 45, 79) !important;
   }
   
   nav .brand-logo {
@@ -29,7 +29,7 @@
     width: 23%;
     border: none;
     -webkit-text-fill-color: white;
-    background-color: rgb(5, 56, 109);
+    background-color: rgb(14, 45, 79);
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
@@ -44,7 +44,7 @@
     width: 23%;
     border: none;
     color: white;
-    background-color: rgb(5, 56, 109);
+    background-color: rgb(14, 45, 79);
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
@@ -52,7 +52,7 @@
   }
   
   .btn-primary:hover {
-    background-color: rgb(4, 45, 90);
+    background-color: rgb(14, 45, 79);
   }
   
   /* ==========================
@@ -66,7 +66,7 @@
     align-items: center;
     text-align: center;
     background: url('https://source.unsplash.com/1600x900/?books,library') center/cover;
-    color: rgb(5, 56, 109);
+    color: rgb(14, 45, 79);
     padding: 20px;
   }
   
@@ -160,7 +160,7 @@
   .auth-container h4 {
     margin-bottom: 20px;
     font-weight: 600;
-    color: rgb(5, 56, 109);
+    color: rgb(14, 45, 79);
   }
   
   .input-field input {
@@ -173,7 +173,7 @@
   
   .btn-auth {
     width: 100%;
-    background-color: rgb(5, 56, 109);
+    background-color: rgb(14, 45, 79);
     color: white;
     transition: 0.3s;
     padding: 12px;
@@ -184,7 +184,7 @@
   }
   
   .btn-auth:hover {
-    background-color: rgb(4, 45, 90);
+    background-color: rgb(14, 45, 79);
   }
   
   .auth-message {
@@ -197,7 +197,7 @@
     margin-top: 15px;
     display: block;
     font-size: 14px;
-    color: rgb(5, 56, 109);
+    color: rgb(14, 45, 79);
     text-decoration: none;
   }
   
@@ -237,7 +237,7 @@
 }
 
 .nav .dropdown-content {
-  background-color: rgb(5, 56, 109);
+  background-color: rgb(14, 45, 79);
   border-radius: 5px;
   min-width: 150px;
   white-space: nowrap;
@@ -259,7 +259,7 @@
 }
 
 .nav .dropdown-content li a:hover {
-  background-color: rgb(4, 45, 90);
+  background-color: rgb(14, 45, 79);
 }
 
 /* Enable dropdown on hover */
@@ -281,7 +281,7 @@ ul.dropdown-content {
 /* Mobile Menu Dropdown */
 @media (max-width: 768px) {
   .dropdown-content {
-    background-color: rgb(5, 56, 109);
+    background-color: rgb(14, 45, 79);
     min-width: 100%; /* Makes the dropdown width fit on mobile */
     overflow: hidden; /* Prevents horizontal scroll on mobile */
   }
@@ -293,6 +293,6 @@ ul.dropdown-content {
   }
 
   .dropdown-content li a:hover {
-    background-color: rgb(4, 45, 90);
+    background-color: rgb(14, 45, 79);
   }
 }
