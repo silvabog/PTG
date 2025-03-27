@@ -78,6 +78,10 @@
   .hero p {
     font-size: 1.2rem;
     margin-bottom: 20px;
+    color: black;
+  }
+  
+  .hero p2 {
     color: red;
   }
   
@@ -101,7 +105,7 @@
   
   .featured-books h3 {
     font-size: 1.8rem;
-    color: #333;
+    color: rgb(14, 45, 79);
     margin-bottom: 20px;
   }
   
