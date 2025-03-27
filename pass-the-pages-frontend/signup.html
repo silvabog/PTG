@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Book Swap</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navbar (Dynamically Loaded) -->
+  <div id="navbar-container"></div>
+
+  <!-- Signup Form -->
+  <div class="reg-container">
+    <h4>Sign up</h4>
+    <form id="regForm">
+      <div class="input-field">
+        <input type="text" id="regFirstName" placeholder="First Name" required>
+      </div>
+      <div class="input-field">
+        <input type="text" id="regLastName" placeholder="Last Name" required>
+      </div>
+        <div class="input-field">
+            <input type="email" id="regEmail" placeholder="Email" required>
+        </div>
+        <div class="input-field">
+        <input type="text" id="regUsername" placeholder="Username" required>
+        </div>
+        <div class="input-field">
+            <input type="password" id="regPassword" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn-reg">Sign up</button>
+    </form>
+    <p id="registerMessage" class="register-message"></p>
+    <a href="login.html" class="login-link">Already have an account? Log in!</a>
+</div>
+
+
+
+  <script src="script.js"></script>
+
+  <!-- Materialize JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+  <!-- Load Navbar -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("navbar-container").innerHTML = data;
+          var elems = document.querySelectorAll(".sidenav");
+          M.Sidenav.init(elems);
+        });
+    });
+  </script>
+
+</body>
+</html>
