@@ -21,7 +21,7 @@
   </section>
 
     <!-- General info about website -->
-     <section class=" hero center-align">
+    <section class="hero center-align">
       <h2> What is Pass The Pages?</h2>
       <p>
         This is a book donation website for students to donate books they don’t use anymore. Many students struggle with the high costs of textbooks, while others have old books they no longer need. 
@@ -40,34 +40,41 @@
   </section>
 
   <!-- Materialize JS -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
-  <!-- Load Navbar Dynamically -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      fetch("navbar.html")
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("navbar-container").innerHTML = data;
-          var elems = document.querySelectorAll(".sidenav");
-          M.Sidenav.init(elems);
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<!-- Load Navbar Dynamically -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar-container").innerHTML = data;
+        var elemsSidenav = document.querySelectorAll(".sidenav");
+        M.Sidenav.init(elemsSidenav);
+
+        // Initialize Dropdown for 'My Account' dropdown (ensuring hover works)
+        var dropdownElems = document.querySelectorAll('.dropdown-trigger');
+        M.Dropdown.init(dropdownElems, {
+          hover: true, // Ensure hover functionality
+          alignment: 'right', // Align dropdown to the right
+          coverTrigger: false, // Ensures dropdown is properly aligned
         });
-    });
-  </script>
+      });
+  });
+</script>
+
 
   <!-- Custom JavaScript -->
   <script src="script.js"></script>
 
-<!-- Hero Section -->
-<section class="hero center-align">
+  <!-- Hero Section -->
+  <section class="hero center-align">
     <h2>Recycle Books with Students Near You!</h2>
     <p>Join our book swap community and start saving on books today.</p>
     <p2> *ONLY FOR COLLEGE STUDENTS*</p2>
     <button type="button" class="block"><a href="signup.html" class="aaa">Create an account</a></button>
   </section>
-  
-  
 
 </body>
 </html>

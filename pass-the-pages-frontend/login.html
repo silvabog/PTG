@@ -6,48 +6,77 @@
         <title>Log in - Book Swap</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
-      </head>
+        <style>
+          /* Enable dropdown on hover */
+ul.dropdown-content {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Smooth transition */
+}
+
+/* Show the dropdown when hovering over the trigger */
+.dropdown-trigger:hover + .dropdown-content,
+.dropdown-content:hover {
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0s; /* Transition in */
+}
+
+/* Position the dropdown under the 'My Account' button */
+.dropdown-content {
+  left: auto !important;  /* Align the dropdown to the left of the trigger */
+  right: 0 !important;  /* Disable default right alignment */
+  top: 100% !important;  /* Position it just below the trigger */
+} 
+        </style>
+    </head>
     <body>
         <!-- Navbar (Dynamically Loaded) -->
-  <div id="navbar-container"></div>
+        <div id="navbar-container"></div>
 
-  <!-- Signup Form -->
-  <div class="login-container">
-    <h4>Log in</h4>
-    <form id="loginForm">
-        <div class="input-field">
-            <input type="email" id="loginEmail" placeholder="Email" required>
+        <!-- Login Form -->
+        <div class="auth-container">
+            <h4>Log in</h4>
+            <form id="loginForm">
+                <div class="input-field">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-auth">Login</button>
+            </form>
+            <p id="loginMessage" class="auth-message"></p>
+            <a href="signup.html" class="auth-link">Don't have an account? Sign up!</a>
         </div>
-        <div class="input-field">
-            <input type="password" id="loginPassword" placeholder="Password" required>
-        </div>
-        <button type="submit" class="btn-login">Login</button>
-    </form>
-    <p id="loginMessage" class="login-message"></p>
-    <a href="signup.html" class="signup-link">Don't have an account? Sign up!</a>
-</div>
 
-
-  <script src="script.js"></script>
-
-  
-
-  <!-- Materialize JS -->
+          <!-- Materialize JS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
+
   <!-- Load Navbar -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // Load navbar.html dynamically
       fetch("navbar.html")
         .then(response => response.text())
         .then(data => {
           document.getElementById("navbar-container").innerHTML = data;
+
+          // Initialize Sidenav for mobile menu
           var elems = document.querySelectorAll(".sidenav");
           M.Sidenav.init(elems);
+
+          // Initialize Dropdown for My Account section (on click, not hover)
+          var dropdownElems = document.querySelectorAll('.dropdown-trigger');
+          M.Dropdown.init(dropdownElems);
         });
     });
   </script>
 
-</body>
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+    </body>
 </html>

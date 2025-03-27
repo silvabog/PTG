@@ -66,3 +66,23 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
     document.getElementById("registerMessage").innerText = data.message || "Registration failed";
 });
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Load navbar.html dynamically
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar-container").innerHTML = data;
+  
+        // Initialize Sidenav for mobile menu
+        var elems = document.querySelectorAll(".sidenav");
+        M.Sidenav.init(elems);
+  
+        // Initialize Dropdown for My Account section (on click, not hover)
+        var dropdownElems = document.querySelectorAll('.dropdown-trigger');
+        M.Dropdown.init(dropdownElems);
+      });
+  });
+  
+  
+  
