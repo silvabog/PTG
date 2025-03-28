@@ -38,34 +38,30 @@ document.getElementById("loginForm")?.addEventListener("submit", async (event) =
     const data = await response.json();
     if (data.token) {
         authToken = data.token;
+        localStorage.setItem("authToken", authToken);
+        localStorage.setItem("isLoggedIn", "true");
         document.getElementById("loginMessage").innerText = "Login Successful!";
-        window.location.href = "index.html";
+
+        // Redirect with a slight delay to ensure storage is set
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 500);
     } else {
         document.getElementById("loginMessage").innerText = data.message || "Login failed";
     }
 });
 
-// Register User
-document.getElementById("registerForm")?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const username = document.getElementById("regUsername").value;
-    const email = document.getElementById("regEmail").value;
-    const password = document.getElementById("regPassword").value;
-    const first_name = document.getElementById("regFirstName").value;
-    const last_name = document.getElementById("regLastName").value;
+// Logout function
+function logout() {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "index.html";
+}
 
-    const response = await fetch(`${apiUrl}/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password, first_name, last_name }),
-    });
-
-    const data = await response.json();
-    document.getElementById("registerMessage").innerText = data.message || "Registration failed";
-});
-
-// Fetch Navbar HTML and Initialize Materialize Components
+// Update Navbar based on authentication status
 document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
     // Load navbar dynamically
     fetch("navbar.html")
       .then(response => response.text())
@@ -78,13 +74,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var dropdownElems = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(dropdownElems, {
-          hover: true, // Ensure hover functionality
-          alignment: 'right', // Align dropdown to the right
-          coverTrigger: false, // Ensure proper dropdown alignment
+          hover: true,
+          alignment: 'right',
+          coverTrigger: false,
         });
+
+        // Show/Hide navbar links based on authentication status
+        if (isLoggedIn) {
+            document.getElementById("login-link").style.display = "none";
+            document.getElementById("signup-link").style.display = "none";
+            document.getElementById("logout-link").style.display = "block";
+        }
       });
 
-    // Display book list (static example books for now)
+    // Display book list
     displayBooks();
 });
-
