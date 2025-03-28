@@ -23,6 +23,7 @@ function displayBooks() {
     });
 }
 
+
 // Login User
 document.getElementById("loginForm")?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -89,4 +90,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Display book list
     displayBooks();
+});
+
+document.getElementById("registerForm")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const username = document.getElementById("regUsername").value;
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
+    const first_name = document.getElementById("regFirstName").value;
+    const last_name = document.getElementById("regLastName").value;
+
+    const response = await fetch(`${apiUrl}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password, first_name, last_name }),
+    });
+
+    const data = await response.json();
+    document.getElementById("registerMessage").innerText = data.message || "Registration failed";
 });
