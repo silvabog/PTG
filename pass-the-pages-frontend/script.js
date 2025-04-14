@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     displayBooks();
 });
 
+//register
 document.getElementById("registerForm")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const username = document.getElementById("regUsername").value;
@@ -107,5 +108,29 @@ document.getElementById("registerForm")?.addEventListener("submit", async (event
     });
 
     const data = await response.json();
+
     document.getElementById("registerMessage").innerText = data.message || "Registration failed";
+
+    if (data.message && data.message.toLowerCase().includes("success")) {
+        // Automatically login
+        const loginResponse = await fetch(`${apiUrl}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const loginData = await loginResponse.json();
+
+        if (loginData.token) {
+            authToken = loginData.token;
+            localStorage.setItem("authToken", authToken);
+            localStorage.setItem("isLoggedIn", "true");
+
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 500);
+        } else {
+            document.getElementById("registerMessage").innerText = "Registered, but login failed.";
+        }
+    }
 });
