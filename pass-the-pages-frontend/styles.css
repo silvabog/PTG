@@ -13,13 +13,17 @@
      ========================== */
   nav {
     background-color: rgb(14, 45, 79) !important;
+    
   }
   
   nav .brand-logo {
     font-size: xx-large;
     font-weight: bold;
+    
   }
   
+
+  /*misc*/
   .aaa {
     color: white;
   }
