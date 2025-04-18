@@ -161,69 +161,71 @@
     
   
   
-  /* ==========================
+/* ==========================
      Login & Registration Forms
      ========================== */
-  .auth-container {
-    max-width: 400px;
-    width: 100%;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-  
-  .auth-container h4 {
-    margin-bottom: 20px;
-    font-weight: 600;
-    color: rgb(14, 45, 79);
-  }
-  
-  .input-field input {
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    padding: 12px;
-    border: 1px solid #ddd;
-    width: 100%;
-  }
-  
-  .btn-auth {
-    width: 100%;
-    background-color: rgb(14, 45, 79);
-    color: white;
-    transition: 0.3s;
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .btn-auth:hover {
-    background-color: rgb(14, 45, 79);
-  }
-  
-  .auth-message {
-    margin-top: 10px;
-    font-size: 14px;
-    color: red;
-  }
-  
-  .auth-link {
-    margin-top: 15px;
-    display: block;
-    font-size: 14px;
-    color: rgb(14, 45, 79);
-    text-decoration: none;
-  }
-  
-  .auth-link:hover {
-    text-decoration: underline;
-  }
+     .auth-container {
+      max-width: 400px;
+      width: 100%;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin: auto;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+    
+    .auth-container h4 {
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: rgb(14, 45, 79);
+    }
+    
+    .input-field input {
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      width: 100%;
+    }
+    
+    .btn-auth {
+      width: 100%;
+      background-color: rgb(14, 45, 79);
+      color: white;
+      transition: 0.3s;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-auth:hover {
+      background-color: rgb(14, 45, 79);
+    }
+    
+    .auth-message {
+      margin-top: 10px;
+      font-size: 14px;
+      color: red;
+    }
+    
+    .auth-link {
+      margin-top: 15px;
+      display: block;
+      font-size: 14px;
+      color: rgb(14, 45, 79);
+      text-decoration: none;
+    }
+    
+    .auth-link:hover {
+      text-decoration: underline;
+    }
+    
+
   
   /* ==========================
      Mobile Responsive
