@@ -42,28 +42,34 @@
   <!-- Navbar (Dynamically Loaded) -->
   <div id="navbar-container"></div>
 
-  <div class="container" style="max-width: 800px; margin: 50px auto; text-align: center;">
-    <h5 style="color: rgb(14, 45, 79); font-size: 24px; margin-bottom: 30px;">Send a Message</h5>
+  <div>
+    <h4 style="text-align: center; color: rgb(22, 60, 95) ;  margin-bottom: -30px;
+    font-weight: 600;
+    color: rgb(14, 45, 79);">Chat</h4>
+  </div>
 
-    <!-- Recipient Selector -->
-    <div>
+  <div class="messenger-container">
+    <!-- Sidebar: Recipient List -->
+    <div class="messenger-sidebar">
+      <h6>Select a User</h6>
       <select id="recipientSelect" class="browser-default">
         <option value="" disabled selected>Select a user</option>
-        <!-- Options added dynamically by script.js -->
+        <!-- Options added dynamically -->
       </select>
     </div>
-
-    <!-- Message Input -->
-    <div style="margin-top: 20px;">
-      <input id="messageInput" type="text" placeholder="Type your message here" style="width: 80%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;" />
+  
+    <!-- Chat Area -->
+    <div class="messenger-chat-area">
+      <div id="chatBox" class="messages-list"></div>
+  
+      <!-- Message Input Area -->
+      <div class="messenger-input-area">
+        <input id="messageInput" type="text" placeholder="Type a message..." />
+        <button class="send-message-btn" onclick="sendMessage()">Send</button>
+      </div>
     </div>
-
-    <!-- Send Button -->
-    <button class="send-message-btn" onclick="sendMessage()">Send</button>
-
-    <!-- Chat Messages Display -->
-    <div id="chatBox" class="messages-list" style="margin-top: 30px;"></div>
   </div>
+  
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

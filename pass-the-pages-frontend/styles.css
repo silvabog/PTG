@@ -299,178 +299,128 @@ ul.dropdown-content {
 
 
 /* ==========================
-   Messaging Section Styles
+   Messenger Layout (Facebook-style)
    ========================== */
 
-/* Recipient Dropdown Button */
-.recipient-dropdown-btn {
-  display: block;
-  width: 50%;
-  max-width: 300px;
-  margin: 20px auto;
-  background-color: rgb(14, 45, 79);
-  color: white;
-  padding: 14px 28px;
-  font-size: 16px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 5px;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'14'%20height%3D'10'%20viewBox%3D'0%200%2014%2010'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%201l6%206%206-6'%20stroke%3D'white'%20stroke-width%3D'2'%20fill%3D'none'%20fill-rule%3D'evenodd'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 12px;
-}
-
-.recipient-dropdown-btn:hover {
-  background-color: rgb(12, 38, 68);
-}
-
-
-/* ==========================
-   Messaging Section Styles
-   ========================== */
-
-/* Recipient Dropdown Button */
-.recipient-dropdown-btn {
-  display: block;
-  width: 50%;
-  max-width: 300px;
-  margin: 20px auto;
-  background-color: rgb(14, 45, 79);
-  color: white;
-  padding: 14px 28px;
-  font-size: 16px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 5px;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'14'%20height%3D'10'%20viewBox%3D'0%200%2014%2010'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%201l6%206%206-6'%20stroke%3D'white'%20stroke-width%3D'2'%20fill%3D'none'%20fill-rule%3D'evenodd'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 12px;
-}
-
-.recipient-dropdown-btn:hover {
-  background-color: rgb(12, 38, 68);
-}
-
-
-/* Dropdown Options */
-.recipient-dropdown-content {
-  background-color: rgb(14, 45, 79);
-  border-radius: 5px;
-  min-width: 200px;
-  position: absolute;
-  z-index: 1;
-  display: none;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.recipient-dropdown-content li {
-  list-style-type: none;
-}
-
-.recipient-dropdown-content li a {
-  color: white;
-  padding: 12px 20px;
-  font-size: 16px;
-  display: block;
-  text-align: left;
-  cursor: pointer;
-}
-
-.recipient-dropdown-content li a:hover {
-  background-color: rgb(14, 45, 79);
-}
-
-/* Show Dropdown when hovered */
-.recipient-dropdown:hover .recipient-dropdown-content {
-  display: block;
-}
-
-/* ==========================
-   Messages List Styles
-   ========================== */
-.messages-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-}
-
-.message {
-  background-color: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 80%;
-  margin: 10px 0;
-  font-size: 1rem;
-  color: rgb(14, 45, 79);
-  text-align: left;
-}
-
-.message.sent {
-  align-self: flex-end;
-  background-color: rgb(14, 45, 79);
-  color: white;
-}
-
-.message.received {
-  align-self: flex-start;
-  background-color: #f1f1f1;
-}
-
-/* ==========================
-   Send Message Button
-   ========================== */
-.send-message-btn {
-  width: 50%;
-  max-width: 300px;
-  margin: 20px auto;
-  background-color: rgb(14, 45, 79);
-  color: white;
-  padding: 14px 28px;
-  font-size: 16px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.send-message-btn:hover {
-  background-color: rgb(14, 45, 79);
-}
-
-/* Native select (browser-default) style override */
-#recipientSelect.browser-default {
-  width: 50%;
-  max-width: 300px;
-  margin: 20px auto;
-  padding: 12px 14px;
-  font-size: 16px;
-  color: white;
-  background-color: rgb(14, 45, 79);
-  border: none;
-  border-radius: 5px;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'14'%20height%3D'10'%20viewBox%3D'0%200%2014%2010'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%201l6%206%206-6'%20stroke%3D'white'%20stroke-width%3D'2'%20fill%3D'none'%20fill-rule%3D'evenodd'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 12px;
-  cursor: pointer;
-}
-
-#recipientSelect.browser-default option {
-  color: #f0f0f0; /* keep option text readable */
-}
-
+   .messenger-container {
+    display: flex;
+    height: 80vh;
+    max-width: 1000px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+  
+  .messenger-sidebar {
+    width: 30%;
+    background-color: rgb(14, 45, 79);
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .messenger-sidebar h6 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  #recipientSelect.browser-default {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: rgb(22, 60, 95);
+    border: none;
+    border-radius: 5px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'14'%20height%3D'10'%20viewBox%3D'0%200%2014%2010'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%201l6%206%206-6'%20stroke%3D'white'%20stroke-width%3D'2'%20fill%3D'none'%20fill-rule%3D'evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    cursor: pointer;
+  }
+  
+  #recipientSelect option {
+    color: #f0f0f0;
+  }
+  
+  /* Chat Area */
+  .messenger-chat-area {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .messages-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 10px;
+  }
+  
+  /* Messages */
+  .message {
+    max-width: 60%;
+    padding: 12px 16px;
+    border-radius: 20px;
+    font-size: 15px;
+    word-wrap: break-word;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .message.sent {
+    align-self: flex-end;
+    background-color: rgb(14, 45, 79);
+    color: white;
+  }
+  
+  .message.received {
+    align-self: flex-start;
+    background-color: #f0f0f0;
+    color: #222;
+  }
+  
+  /* Input Area */
+  .messenger-input-area {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .messenger-input-area input {
+    flex-grow: 1;
+    padding: 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+  }
+  
+  .send-message-btn {
+    background-color: rgb(14, 45, 79);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .send-message-btn:hover {
+    background-color: rgb(10, 35, 60);
+  }
+  
 
 
 /*footer*/

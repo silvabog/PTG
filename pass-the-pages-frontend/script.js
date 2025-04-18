@@ -214,6 +214,19 @@ function sendMessage() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const messageInput = document.getElementById("messageInput");
+    if (messageInput) {
+        messageInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault(); // prevent newline
+                sendMessage();
+            }
+        });
+    }
+});
+
+
 function loadMessages() {
     const chatBox = document.getElementById("chatBox");
     if (!chatBox || !currentRecipient) return;
