@@ -80,9 +80,10 @@
     .book-grid {
       flex: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(3, 1fr); 
       gap: 1.5rem;
     }
+
 
     .book-card {
       background: white;
@@ -115,6 +116,16 @@
       margin: 0.2rem 0;
     }
 
+    .pagination-container {
+  margin: 2rem 0;
+  width: 90%; /* Ensure it stretches across the container */
+}
+
+.pagination-container button {
+  margin: 0 5px;
+}
+
+
     @media(max-width: 992px) {
       .main-content {
         flex-direction: column;
@@ -146,32 +157,37 @@
     </div>
   </header>
 
-    <div class="main-content container">
-      <aside class="sidebar">
-        <h6>Filter by Condition</h6>
-        <p>
-          <label><input type="checkbox" class="filter-checkbox" value="Like New" /> <span>Like New</span></label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Good" /> <span>Good</span></label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Acceptable" /> <span>Acceptable</span></label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Bad" /> <span>Bad</span></label>
-        </p>
-    
-        <h6>Filter by Subject</h6>
-        <p>
-          <label><input type="checkbox" class="filter-checkbox" value="Business" /> <span>Business</span></label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Health" /> <span>Health</span></label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Computer Science" /> <span>Computer Science</span></label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Education" /> <span>Education</span></label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Liberal Arts" /> <span>Liberal Arts</span></label><br>
-          <label><input type="checkbox" class="filter-checkbox" value="Criminal Justice" /> <span>Criminal Justice</span></label>
-        </p>
-      </aside>
+  <div class="main-content container">
+    <aside class="sidebar">
+      <h6>Filter by Condition</h6>
+      <p>
+        <label><input type="checkbox" class="filter-checkbox" value="Like New" /> <span>Like New</span></label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Good" /> <span>Good</span></label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Acceptable" /> <span>Acceptable</span></label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Bad" /> <span>Bad</span></label>
+      </p>
+  
+      <h6>Filter by Subject</h6>
+      <p>
+        <label><input type="checkbox" class="filter-checkbox" value="Business" /> <span>Business</span></label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Health" /> <span>Health</span></label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Computer Science" /> <span>Computer Science</span></label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Education" /> <span>Education</span></label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Liberal Arts" /> <span>Liberal Arts</span></label><br>
+        <label><input type="checkbox" class="filter-checkbox" value="Criminal Justice" /> <span>Criminal Justice</span></label>
+      </p>
+    </aside>
+  
+    <section class="book-grid book-list">
+      <!-- Book cards injected here -->
+    </section>
+  
 
-      <section class="book-grid book-list">
-        <!-- Book cards injected here -->
-      </section>
+  
+      
     </div>
-    
+    <div class="pagination-container center-align" id="pagination"></div> <!-- Move pagination here -->
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

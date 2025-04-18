@@ -273,135 +273,126 @@ async function loadRecipientOptions() {
 
 
 
-//books display
+// books display
 async function displayBooks() {
     const bookList = document.querySelector(".book-list");
     if (!bookList) return;
-  
-    try {
-      const response = await fetch(`${apiUrl}/books`);
-      const books = await response.json();
-  
-      bookList.innerHTML = "";
-  
-      // Show only the last 5 books
-      const latestBooks = books.slice(-5).reverse();
-  
-      latestBooks.forEach((book, index) => {
-        const bookCard = document.createElement("div");
-        bookCard.classList.add("book-card");
-        bookCard.innerHTML = `
-          <img src="img/book${(index % 3) + 1}.png" alt="${book.title}">
-          <h4>${book.title}</h4>
-          <p>by ${book.author}</p>
-        `;
-        bookList.appendChild(bookCard);
-      });
-    } catch (error) {
-      console.error("Error fetching books:", error);
-    }
-  }
-  
 
-//display all books
-async function displayAllBooks() {
-    const bookList = document.querySelector(".book-list");
-    const searchInput = document.getElementById("searchInput");
-    if (!bookList || !searchInput) return;
-  
-    let allBooks = [];
-  
     try {
-      const response = await fetch(`${apiUrl}/books`);
-      allBooks = await response.json();
-      renderBooks(allBooks);
-    } catch (error) {
-      console.error("Error fetching all books:", error);
-    }
-  
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.toLowerCase();
-      const filteredBooks = allBooks.filter(book =>
-        book.title.toLowerCase().includes(query) ||
-        book.author.toLowerCase().includes(query)
-      );
-      renderBooks(filteredBooks);
-    });
-  
-    function renderBooks(books) {
-      bookList.innerHTML = "";
-      books.forEach((book, index) => {
-        const bookCard = document.createElement("div");
-        bookCard.classList.add("book-card");
-        bookCard.innerHTML = `
-          <img src="img/book${(index % 3) + 1}.png" alt="${book.title}">
-          <h4>${book.title}</h4>
-          <p>by ${book.author}</p>
-        `;
-        bookList.appendChild(bookCard);
-      });
-    }
-  }
-  
+        const response = await fetch(`${apiUrl}/books`);
+        const books = await response.json();
 
-// Filter books using sidebar checkboxes
+        bookList.innerHTML = "";
+
+        // Show only the last 5 books
+        const latestBooks = books.slice(-5).reverse();
+
+        latestBooks.forEach((book, index) => {
+            const bookCard = document.createElement("div");
+            bookCard.classList.add("book-card");
+            bookCard.innerHTML = `
+                <img src="img/book${(index % 3) + 1}.png" alt="${book.title}">
+                <h4>${book.title}</h4>
+                <p>by ${book.author}</p>
+            `;
+            bookList.appendChild(bookCard);
+        });
+    } catch (error) {
+        console.error("Error fetching books:", error);
+    }
+}
+
+// display all books with pagination
+const booksPerPage = 12;
+let currentPage = 1;
+let allBooks = [];
+
 async function displayAllBooks() {
     const bookList = document.querySelector(".book-list");
     const searchInput = document.getElementById("searchInput");
     const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
-  
+
     if (!bookList || !searchInput) return;
-  
-    let allBooks = [];
-  
+
     try {
-      const response = await fetch(`${apiUrl}/books`);
-      allBooks = await response.json();
-      renderBooks(allBooks);
+        const response = await fetch(`${apiUrl}/books`);
+        allBooks = await response.json();
+        renderBooks(allBooks);
     } catch (error) {
-      console.error("Error fetching all books:", error);
+        console.error("Error fetching all books:", error);
     }
-  
-    function renderBooks(books) {
-      bookList.innerHTML = "";
-      books.forEach((book, index) => {
-        const bookCard = document.createElement("div");
-        bookCard.classList.add("book-card");
-        bookCard.innerHTML = `
-          <img src="img/book${(index % 3) + 1}.png" alt="${book.title}">
-          <h4>${book.title}</h4>
-          <p>by ${book.author}</p>
-          <p><strong>Condition:</strong> ${book.condition}</p>
-          <p><strong>Subject:</strong> ${book.subject}</p>
-        `;
-        bookList.appendChild(bookCard);
-      });
-    }
-  
-    function applyFilters() {
-      const query = searchInput.value.toLowerCase();
-  
-      const checkedFilters = Array.from(filterCheckboxes)
-        .filter(checkbox => checkbox.checked)
-        .map(cb => cb.value);
-  
-      const filtered = allBooks.filter(book => {
-        const matchesSearch =
-          book.title.toLowerCase().includes(query) ||
-          book.author.toLowerCase().includes(query);
-  
-        const matchesFilter =
-          checkedFilters.length === 0 ||
-          checkedFilters.includes(book.condition) ||
-          checkedFilters.includes(book.subject);
-  
-        return matchesSearch && matchesFilter;
-      });
-  
-      renderBooks(filtered);
-    }
-  
+
     searchInput.addEventListener("input", applyFilters);
     filterCheckboxes.forEach(cb => cb.addEventListener("change", applyFilters));
-  }
+
+    function renderBooks(books) {
+        bookList.innerHTML = "";
+        const paginatedBooks = paginateBooks(books, currentPage);
+
+        paginatedBooks.forEach((book, index) => {
+            const bookCard = document.createElement("div");
+            bookCard.classList.add("book-card");
+            bookCard.innerHTML = `
+                <img src="img/book${(index % 3) + 1}.png" alt="${book.title}">
+                <h4>${book.title}</h4>
+                <p>by ${book.author}</p>
+                <p><strong>Condition:</strong> ${book.condition}</p>
+                <p><strong>Subject:</strong> ${book.subject}</p>
+            `;
+            bookList.appendChild(bookCard);
+        });
+
+        renderPagination(books.length);
+    }
+
+    function paginateBooks(books, page) {
+        const start = (page - 1) * booksPerPage;
+        return books.slice(start, start + booksPerPage);
+    }
+
+    function renderPagination(totalBooks) {
+        const totalPages = Math.ceil(totalBooks / booksPerPage);
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.className = "waves-effect waves-light btn-small";
+            if (i === currentPage) btn.classList.add("blue", "white-text");
+
+            btn.addEventListener("click", () => {
+                currentPage = i;
+                displayBooks();
+            });
+
+            pagination.appendChild(btn);
+        }
+    }
+
+    function applyFilters() {
+        const query = searchInput.value.toLowerCase();
+
+        const checkedFilters = Array.from(filterCheckboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(cb => cb.value);
+
+        const filtered = allBooks.filter(book => {
+            const matchesSearch =
+                book.title.toLowerCase().includes(query) ||
+                book.author.toLowerCase().includes(query);
+
+            const matchesFilter =
+                checkedFilters.length === 0 ||
+                checkedFilters.includes(book.condition) ||
+                checkedFilters.includes(book.subject);
+
+            return matchesSearch && matchesFilter;
+        });
+
+        currentPage = 1; // Reset to first page when filters change
+        renderBooks(filtered);
+    }
+}
+
   
