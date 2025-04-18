@@ -473,10 +473,10 @@ ul.dropdown-content {
 
 /*footer*/
 .footer {
-  padding: 30px 0;
+  padding: 10px 0;
   margin-top: 50px;
   font-size: 16px;
-  border-top: 2px solid #444;
+  border-top: 2px solid rgb(14, 45, 79);
 }
 
 .footer-links {
@@ -493,6 +493,23 @@ ul.dropdown-content {
 .footer-links a:hover {
   color: #fff;
 }
+
+/*browse books style*/
+
+.input-field input[type="text"] {
+  padding-left: 40px;
+  margin-top: 20px;
+}
+
+.input-field i.material-icons.prefix {
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  color: #666;
+}
+
+
+
 
 
 /* ==========================
