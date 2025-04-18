@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Messages - Book Swap</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Enable dropdown on hover */
+    ul.dropdown-content {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    }
+
+    .dropdown-trigger:hover + .dropdown-content,
+    .dropdown-content:hover {
+      display: block !important;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s ease, visibility 0s linear 0s;
+    }
+
+    .dropdown-content {
+      left: auto !important;
+      right: -80px !important;
+      top: 100% !important;
+    }
+
+    .chat-box {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar (Dynamically Loaded) -->
+  <div id="navbar-container"></div>
+
+  <div class="container" style="max-width: 800px; margin: 50px auto; text-align: center;">
+    <h5 style="color: rgb(14, 45, 79); font-size: 24px; margin-bottom: 30px;">Send a Message</h5>
+
+    <!-- Recipient Selector -->
+    <div>
+      <select id="recipientSelect" class="browser-default">
+        <option value="" disabled selected>Select a user</option>
+        <!-- Options added dynamically by script.js -->
+      </select>
+    </div>
+
+    <!-- Message Input -->
+    <div style="margin-top: 20px;">
+      <input id="messageInput" type="text" placeholder="Type your message here" style="width: 80%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;" />
+    </div>
+
+    <!-- Send Button -->
+    <button class="send-message-btn" onclick="sendMessage()">Send</button>
+
+    <!-- Chat Messages Display -->
+    <div id="chatBox" class="messages-list" style="margin-top: 30px;"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

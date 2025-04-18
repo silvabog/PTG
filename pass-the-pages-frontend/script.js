@@ -4,6 +4,7 @@ let authToken = "";
 // Function to handle book listing
 function displayBooks() {
     const bookList = document.querySelector(".book-list");
+    if (!bookList) return;
 
     const books = [
         { title: "Intro to Python", author: "John Doe", price: "$20" },
@@ -23,7 +24,6 @@ function displayBooks() {
     });
 }
 
-
 // Login User
 document.getElementById("loginForm")?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -41,9 +41,9 @@ document.getElementById("loginForm")?.addEventListener("submit", async (event) =
         authToken = data.token;
         localStorage.setItem("authToken", authToken);
         localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("currentUser", data.username || email); // store username or email
         document.getElementById("loginMessage").innerText = "Login Successful!";
 
-        // Redirect with a slight delay to ensure storage is set
         setTimeout(() => {
             window.location.href = "index.html";
         }, 500);
@@ -56,43 +56,61 @@ document.getElementById("loginForm")?.addEventListener("submit", async (event) =
 function logout() {
     localStorage.removeItem("authToken");
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("currentUser");
     window.location.href = "index.html";
 }
 
-// Update Navbar based on authentication status
+// Update Navbar
 document.addEventListener("DOMContentLoaded", function () {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-    // Load navbar dynamically
+    // Fetch navbar HTML and initialize components
     fetch("navbar.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("navbar-container").innerHTML = data;
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar-container").innerHTML = data;
 
-        // Initialize Sidenav and Dropdown
-        var elemsSidenav = document.querySelectorAll(".sidenav");
-        M.Sidenav.init(elemsSidenav);
+            M.Sidenav.init(document.querySelectorAll(".sidenav"));
+            M.Dropdown.init(document.querySelectorAll(".dropdown-trigger"), {
+                hover: true,
+                alignment: 'right',
+                coverTrigger: false,
+            });
 
-        var dropdownElems = document.querySelectorAll('.dropdown-trigger');
-        M.Dropdown.init(dropdownElems, {
-          hover: true,
-          alignment: 'right',
-          coverTrigger: false,
+            if (isLoggedIn) {
+                // Hide login and signup links, show logout
+                document.getElementById("login-link").style.display = "none";
+                document.getElementById("signup-link").style.display = "none";
+                document.getElementById("logout-link").style.display = "block";
+                
+                // Show "Messages" option only if logged in
+                document.getElementById("messages-link").style.display = "block";
+            } else {
+                // Add event listeners to links that require login
+                document.getElementById("profile-link").addEventListener("click", function (event) {
+                    event.preventDefault();
+                    window.location.href = "login.html";  // Redirect to login page
+                });
+                document.querySelector('a[href="mybooks.html"]').addEventListener("click", function (event) {
+                    event.preventDefault();
+                    window.location.href = "login.html";  // Redirect to login page
+                });
+                document.querySelector('a[href="transactions.html"]').addEventListener("click", function (event) {
+                    event.preventDefault();
+                    window.location.href = "login.html";  // Redirect to login page
+                });
+            }
         });
 
-        // Show/Hide navbar links based on authentication status
-        if (isLoggedIn) {
-            document.getElementById("login-link").style.display = "none";
-            document.getElementById("signup-link").style.display = "none";
-            document.getElementById("logout-link").style.display = "block";
-        }
-      });
-
-    // Display book list
     displayBooks();
+    loadListings();
+    loadRecipientOptions();
+    loadMessages();
+    M.FormSelect.init(document.querySelectorAll("select"));
 });
 
-//register
+
+// Register
 document.getElementById("registerForm")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const username = document.getElementById("regUsername").value;
@@ -108,11 +126,9 @@ document.getElementById("registerForm")?.addEventListener("submit", async (event
     });
 
     const data = await response.json();
-
     document.getElementById("registerMessage").innerText = data.message || "Registration failed";
 
     if (data.message && data.message.toLowerCase().includes("success")) {
-        // Automatically login
         const loginResponse = await fetch(`${apiUrl}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -125,6 +141,7 @@ document.getElementById("registerForm")?.addEventListener("submit", async (event
             authToken = loginData.token;
             localStorage.setItem("authToken", authToken);
             localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("currentUser", loginData.username || email);
 
             setTimeout(() => {
                 window.location.href = "index.html";
@@ -134,3 +151,149 @@ document.getElementById("registerForm")?.addEventListener("submit", async (event
         }
     }
 });
+
+// Listings
+function loadListings() {
+    const list = document.getElementById("listings");
+    if (!list) return;
+
+    const listings = JSON.parse(localStorage.getItem("listings")) || [];
+    list.innerHTML = "";
+
+    listings.forEach((book, index) => {
+        const item = document.createElement("li");
+        item.className = "collection-item";
+        item.innerHTML = `${book} <a href="#!" class="secondary-content red-text" onclick="removeListing(${index})"><i class="material-icons">delete</i></a>`;
+        list.appendChild(item);
+    });
+}
+
+function addListing() {
+    const input = document.getElementById("listingInput");
+    if (!input) return;
+    const book = input.value.trim();
+    if (book !== "") {
+        const listings = JSON.parse(localStorage.getItem("listings")) || [];
+        listings.push(book);
+        localStorage.setItem("listings", JSON.stringify(listings));
+        input.value = "";
+        loadListings();
+    }
+}
+
+function removeListing(index) {
+    const listings = JSON.parse(localStorage.getItem("listings")) || [];
+    listings.splice(index, 1);
+    localStorage.setItem("listings", JSON.stringify(listings));
+    loadListings();
+}
+
+// Messages
+const currentUser = localStorage.getItem("currentUser") || "you";
+const urlParams = new URLSearchParams(window.location.search);
+let currentRecipient = urlParams.get("user") || "";
+
+function sendMessage() {
+    const input = document.getElementById("messageInput");
+    if (!input) return;
+
+    const message = input.value.trim();
+    if (message && currentRecipient) {
+        const chatKey = `chat_${currentRecipient}`;
+        const chats = JSON.parse(localStorage.getItem(chatKey)) || [];
+        chats.push({ sender: currentUser, text: message, time: new Date().toLocaleTimeString() });
+        localStorage.setItem(chatKey, JSON.stringify(chats));
+        input.value = "";
+        loadMessages();
+    }
+}
+
+function loadMessages() {
+    const chatBox = document.getElementById("chatBox");
+    if (!chatBox || !currentRecipient) return;
+
+    const chatKey = `chat_${currentRecipient}`;
+    const chats = JSON.parse(localStorage.getItem(chatKey)) || [];
+
+    chatBox.innerHTML = "";
+    chats.forEach(msg => {
+        const msgDiv = document.createElement("div");
+        msgDiv.className = msg.sender === currentUser ? "right-align blue-text" : "left-align green-text";
+        msgDiv.innerHTML = `<strong>${msg.sender}:</strong> ${msg.text} <small class="grey-text">(${msg.time})</small>`;
+        chatBox.appendChild(msgDiv);
+    });
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function loadRecipientOptions() {
+    const select = document.getElementById("recipientSelect");
+    if (!select || !localStorage.getItem("authToken")) return;
+
+    const response = await fetch(`${apiUrl}/users`, {
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+        }
+    });
+
+    if (!response.ok) return;
+
+    const users = await response.json();
+    select.innerHTML = `<option value="" disabled selected>Select a user</option>`;
+
+    users.forEach(user => {
+        if (user.username !== currentUser) {
+            const opt = document.createElement("option");
+            opt.value = user.username;
+            opt.textContent = user.username;
+            select.appendChild(opt);
+        }
+    });
+
+    M.FormSelect.init(select);
+
+    select.addEventListener("change", function () {
+        currentRecipient = this.value;
+        loadMessages();
+    });
+
+    // Preselect from URL
+    if (currentRecipient) {
+        select.value = currentRecipient;
+        M.FormSelect.init(select);
+        loadMessages();
+    }
+}
+
+
+
+//books display
+async function displayBooks() {
+    const bookList = document.querySelector(".book-list");
+    if (!bookList) return;
+  
+    try {
+      const response = await fetch(`${apiUrl}/books`);
+      const books = await response.json();
+  
+      bookList.innerHTML = "";
+  
+      // Show only the last 5 books
+      const latestBooks = books.slice(-5).reverse();
+  
+      latestBooks.forEach((book, index) => {
+        const bookCard = document.createElement("div");
+        bookCard.classList.add("book-card");
+        bookCard.innerHTML = `
+          <img src="img/book${(index % 3) + 1}.png" alt="${book.title}">
+          <h4>${book.title}</h4>
+          <p>by ${book.author}</p>
+        `;
+        bookList.appendChild(bookCard);
+      });
+    } catch (error) {
+      console.error("Error fetching books:", error);
+    }
+  }
+  
+

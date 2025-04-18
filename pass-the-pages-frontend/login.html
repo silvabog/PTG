@@ -8,31 +8,31 @@
         <link rel="stylesheet" href="styles.css">
         <style>
           /* Enable dropdown on hover */
-ul.dropdown-content {
-  display: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Smooth transition */
-}
-
-/* Show the dropdown when hovering over the trigger */
-.dropdown-trigger:hover + .dropdown-content,
-.dropdown-content:hover {
-  display: block !important;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease, visibility 0s linear 0s; /* Transition in */
-}
-
-/* Position the dropdown under the 'My Account' button */
-.dropdown-content {
-  left: auto !important;  /* Align the dropdown to the left of the trigger */
-  right: 0 !important;  /* Disable default right alignment */
-  top: 100% !important;  /* Position it just below the trigger */
-} 
+      ul.dropdown-content {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Smooth transition */
+      }
+      
+      /* Show the dropdown when hovering over the trigger */
+      .dropdown-trigger:hover + .dropdown-content,
+      .dropdown-content:hover {
+      display: block !important;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s ease, visibility 0s linear 0s; /* Transition in */
+      }
+      
+      /* Position the dropdown under the 'My Account' button */
+      .dropdown-content {
+      left: auto !important;  /* Align the dropdown to the left of the trigger */
+      right: -80px !important;  /* Disable default right alignment */
+      top: 100% !important;  /* Position it just below the trigger */
+      } 
         </style>
-    </head>
-    <body>
+      </head>
+      <body>
         <!-- Navbar (Dynamically Loaded) -->
         <div id="navbar-container"></div>
 

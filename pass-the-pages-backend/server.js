@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json()); // Middleware to parse JSON requests
 
-const port = 5000; // or any port you choose
+const port = 5000; 
 
 // JWT Secret Key
 const JWT_SECRET = 'your-secret-key';
@@ -216,5 +216,20 @@ app.get('/transactions/:userId', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Failed to fetch transactions." });
+    }
+});
+
+// Fetch all users except the current user
+app.get('/users', verifyToken, async (req, res) => {
+    try {
+        const { user_id } = req.user;
+
+        // Query the database to get all users except the current one
+        const result = await pool.query('SELECT username FROM users WHERE user_id != $1', [user_id]);
+        
+        res.json(result.rows);  // Send back a list of usernames
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: "Failed to fetch users." });
     }
 });

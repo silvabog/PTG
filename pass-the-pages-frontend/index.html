@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -14,21 +14,23 @@
   <!-- Navbar Container (Loaded Dynamically) -->
   <div id="navbar-container"></div>
 
+  <div style="height: 10px; background: linear-gradient(to bottom, rgb(14, 45, 79), #f0f0f0 );"></div>
+
+  <a href="browse.html">
+    <img src="img/index_img.png" alt="browse" style="max-width:100%; margin-top: -3px;" >
+  </a>
+
   <!-- Hero Section -->
   <section class="hero center-align">
     <h2>Recycle Books with Students Near You!</h2>
     <input type="text" placeholder="Search for a book..." class="browser-default">
   </section>
 
-  <!-- General info about website -->
-  <section class="hero center-align">
-    <h2> What is Pass The Pages?</h2>
-    <p>
-      This is a book donation website for students to donate books they don’t use anymore. Many students struggle with the high costs of textbooks, while others have old books they no longer need. 
-      This platform provides a peer-to-peer exchange system that connects students within the same campus or nearby locations, allowing them to reduce waste, save money, and promote a circular economy for academic materials. 
-      There is a gratitude tip option, but it’s not mandatory to do.
-    </p>
-    <p2> **THIS IS A COLLEGE STUDENT-ONLY WEBSITE TO AVOID THE RESELL OF BOOKS BY PEOPLE WHO ARE NOT STUDENTS.**</p2>
+  <!-- Image Section -->
+  <section class="image-section">
+    <a href="listings.html">
+    <img src="img/grad.jpg" alt="Reading books" class="responsive-img">
+  </a>
   </section>
 
   <!-- Featured Books Section -->
@@ -39,20 +41,40 @@
     </div>
   </section>
 
-  <!-- Materialize JS -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Image Section -->
+  <section class="image-section">
+    <a href="listings.html">
+    <img src="img/donation.png" style="max-width: 100%" >
+    </a>
+  </section>
 
-  <!-- Load Navbar Dynamically (External Script) -->
-  <script src="script.js"></script>
-
-  <!-- Hero Section -->
+  <!-- Hero Section (Call to Action) -->
   <section class="hero center-align">
     <h2>Recycle Books with Students Near You!</h2>
     <p>Join our book swap community and start saving on books today.</p>
     <p2> *ONLY FOR COLLEGE STUDENTS*</p2>
     <button type="button" class="block"><a href="signup.html" class="aaa">Create an account</a></button>
   </section>
+
+      <!-- Footer -->
+      <footer class="footer grey darken-4 white-text center-align">
+        <div class="container">
+          <p>&copy; 2025 Pass The Pages</p>
+          <p>Built for Kean students, by Kean students</p>
+          <div class="footer-links">
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a> |
+            <a href="listings.html">Donate</a>
+          </div>
+        </div>
+      </footer>
+
+  <!-- Materialize JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Load Navbar Dynamically (External Script) -->
+  <script src="script.js"></script>
 
 </body>
 </html>

@@ -60,51 +60,52 @@
   }
   
   /* ==========================
-     Hero Section
-     ========================== */
-  .hero {
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: url('https://source.unsplash.com/1600x900/?books,library') center/cover;
-    color: rgb(14, 45, 79);
-    padding: 20px;
-  }
-  
-  .hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: black;
-  }
-  
-  .hero p2 {
-    color: red;
-  }
-  
-  .hero input {
-    width: 60%;
-    max-width: 400px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    text-align: center;
-  }
-  
-  /* ==========================
-     Featured Books Section
-     ========================== */
-  .featured-books {
+   Hero Section
+   ========================== */
+.hero {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url('https://source.unsplash.com/1600x900/?books,library') center/cover;
+  color: rgb(14, 45, 79);
+  padding: 20px;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.hero p2 {
+  color: red;
+}
+
+.hero input {
+  width: 60%;
+  max-width: 400px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ==========================
+   Featured Books Section
+   ========================== */
+   .featured-books {
     text-align: center;
     padding: 40px 20px;
+    background-color: #f0f0f0; /* Alternate section background */
   }
   
   .featured-books h3 {
@@ -113,41 +114,52 @@
     margin-bottom: 20px;
   }
   
-  /* ==========================
+ /* ==========================
      Book List
      ========================== */
-  .book-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+.book-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px; /* Reduced gap between cards */
+}
+
+.book-card {
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 140px; /* Smaller width */
+  height: 230px; /* Smaller height */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Evenly space out content inside the card */
+}
+
+.book-card img {
+  width: 100%;
+  height: 100px; /* Smaller image height */
+  object-fit: contain; /* Ensures the image fits inside without cutting */
+  border-radius: 5px;
+}
+
+.book-card h4 {
+  font-size: 0.9rem; /* Smaller font size */
+  margin-top: 8px;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Show ellipsis when the text is too long */
+}
+
+.book-card p {
+  font-size: 0.75rem; /* Even smaller font size for description */
+  color: #666;
+  flex-grow: 1;
+}
+
+    
   
-  .book-card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 200px;
-    text-align: center;
-  }
-  
-  .book-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .book-card h4 {
-    font-size: 1.2rem;
-    margin-top: 10px;
-  }
-  
-  .book-card p {
-    font-size: 0.9rem;
-    color: #666;
-  }
   
   /* ==========================
      Login & Registration Forms
@@ -284,6 +296,228 @@ ul.dropdown-content {
 
 
 
+/* ==========================
+   Messaging Section Styles
+   ========================== */
+
+/* Recipient Dropdown Button */
+.recipient-dropdown-btn {
+  display: block;
+  width: 50%;
+  max-width: 300px;
+  margin: 20px auto;
+  background-color: rgb(14, 45, 79);
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'14'%20height%3D'10'%20viewBox%3D'0%200%2014%2010'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%201l6%206%206-6'%20stroke%3D'white'%20stroke-width%3D'2'%20fill%3D'none'%20fill-rule%3D'evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+}
+
+.recipient-dropdown-btn:hover {
+  background-color: rgb(12, 38, 68);
+}
+
+
+/* ==========================
+   Messaging Section Styles
+   ========================== */
+
+/* Recipient Dropdown Button */
+.recipient-dropdown-btn {
+  display: block;
+  width: 50%;
+  max-width: 300px;
+  margin: 20px auto;
+  background-color: rgb(14, 45, 79);
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'14'%20height%3D'10'%20viewBox%3D'0%200%2014%2010'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%201l6%206%206-6'%20stroke%3D'white'%20stroke-width%3D'2'%20fill%3D'none'%20fill-rule%3D'evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+}
+
+.recipient-dropdown-btn:hover {
+  background-color: rgb(12, 38, 68);
+}
+
+
+/* Dropdown Options */
+.recipient-dropdown-content {
+  background-color: rgb(14, 45, 79);
+  border-radius: 5px;
+  min-width: 200px;
+  position: absolute;
+  z-index: 1;
+  display: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recipient-dropdown-content li {
+  list-style-type: none;
+}
+
+.recipient-dropdown-content li a {
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  display: block;
+  text-align: left;
+  cursor: pointer;
+}
+
+.recipient-dropdown-content li a:hover {
+  background-color: rgb(14, 45, 79);
+}
+
+/* Show Dropdown when hovered */
+.recipient-dropdown:hover .recipient-dropdown-content {
+  display: block;
+}
+
+/* ==========================
+   Messages List Styles
+   ========================== */
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+.message {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  margin: 10px 0;
+  font-size: 1rem;
+  color: rgb(14, 45, 79);
+  text-align: left;
+}
+
+.message.sent {
+  align-self: flex-end;
+  background-color: rgb(14, 45, 79);
+  color: white;
+}
+
+.message.received {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+}
+
+/* ==========================
+   Send Message Button
+   ========================== */
+.send-message-btn {
+  width: 50%;
+  max-width: 300px;
+  margin: 20px auto;
+  background-color: rgb(14, 45, 79);
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.send-message-btn:hover {
+  background-color: rgb(14, 45, 79);
+}
+
+/* Native select (browser-default) style override */
+#recipientSelect.browser-default {
+  width: 50%;
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 12px 14px;
+  font-size: 16px;
+  color: white;
+  background-color: rgb(14, 45, 79);
+  border: none;
+  border-radius: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'14'%20height%3D'10'%20viewBox%3D'0%200%2014%2010'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%201l6%206%206-6'%20stroke%3D'white'%20stroke-width%3D'2'%20fill%3D'none'%20fill-rule%3D'evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  cursor: pointer;
+}
+
+#recipientSelect.browser-default option {
+  color: #f0f0f0; /* keep option text readable */
+}
+
+
+
+/*footer*/
+.footer {
+  padding: 30px 0;
+  margin-top: 50px;
+  font-size: 16px;
+  border-top: 2px solid #444;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  color: #ccc;
+  margin: 0 8px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+
+/* ==========================
+   Mobile Responsive for Messaging
+   ========================== */
+@media (max-width: 768px) {
+  .recipient-dropdown-btn {
+    width: 80%;
+  }
+
+  .messages-list {
+    padding: 10px;
+  }
+
+  .message {
+    max-width: 90%;
+  }
+
+  .send-message-btn {
+    width: 80%;
+  }
+}
+
+
+
 
 
 /* Mobile Menu Dropdown */
@@ -304,3 +538,4 @@ ul.dropdown-content {
     background-color: rgb(14, 45, 79);
   }
 }
+
