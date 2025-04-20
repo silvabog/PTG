@@ -107,10 +107,10 @@ app.get('/profile', verifyToken, async (req, res) => {
 // Book listing route (for authenticated users)
 app.post('/books', async (req, res) => {
     try {
-        const { title, author, course_relevance, condition, description } = req.body;
+        const { title, author, subject, condition, description } = req.body;
         const newBook = await pool.query(
-            "INSERT INTO books (title, author, course_relevance, condition, description) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-            [title, author, course_relevance, condition, description]
+            "INSERT INTO books (title, author, subject, condition, description) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+            [title, author, subject, condition, description]
         );
 
         // Send a success response with the added book details
