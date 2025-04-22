@@ -408,6 +408,14 @@ document.getElementById("addBookForm")?.addEventListener("submit", async (event)
     const condition = document.getElementById("bookCondition").value;
     const subject = document.getElementById("bookSubject").value;
 
+    // Create message element if it doesn't exist
+    let feedback = document.querySelector(".booklisting-feedback-message-unique");
+    if (!feedback) {
+        feedback = document.createElement("div");
+        feedback.className = "booklisting-feedback-message-unique";
+        document.querySelector(".booklisting-form-wrapper").appendChild(feedback);
+    }
+
     if (title && author && subject && condition) {
         const newBook = { title, author, description, condition, subject };
 
@@ -423,16 +431,21 @@ document.getElementById("addBookForm")?.addEventListener("submit", async (event)
 
             const data = await response.json();
             if (data.message === "Book added successfully!") {
-                alert("Book added successfully!");
-                window.location.href = "index.html"; // Redirect to homepage or listings
+                feedback.textContent = "📘 Thank you! Redirecting to your listings...";
+                feedback.style.color = "red";
+                feedback.style.marginTop = "1rem";
+                feedback.style.fontWeight = "bold";
+                setTimeout(() => {
+                    window.location.href = "mybooks.html";
+                }, 2000);
             } else {
-                alert("Failed to add book.");
+                feedback.textContent = "❗ Failed to add book.";
             }
         } catch (error) {
             console.error(error);
-            alert("An error occurred while adding the book.");
+            feedback.textContent = "❗ An error occurred while adding the book.";
         }
     } else {
-        alert("Please fill in all required fields.");
+        feedback.textContent = "❗ Please fill in all required fields.";
     }
 });

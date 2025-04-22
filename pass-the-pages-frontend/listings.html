@@ -63,11 +63,10 @@
       <li>✅ Choose the right condition & subject.</li>
     </ul>
   </div>
-
   <script src="script.js"></script>
   <script>
     // Load Materialize CSS and JS dynamically
-    function loadMaterialize() {
+    function loadMaterialize(callback) {
       const css = document.createElement('link');
       css.rel = 'stylesheet';
       css.href = 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css';
@@ -76,23 +75,34 @@
       const js = document.createElement('script');
       js.src = 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js';
       js.onload = () => {
-        // Initialize dropdowns or other Materialize features after it's loaded
-        M.AutoInit();
+        // Materialize JS is ready, now init components
+        if (typeof callback === 'function') callback();
       };
       document.body.appendChild(js);
     }
   
-    // Inject navbar and load Materialize only for it
     async function loadNavbar() {
       const navbarContainer = document.getElementById('navbar-container');
-      const response = await fetch('navbar.html'); // Load your navbar HTML
+      const response = await fetch('navbar.html');
       const html = await response.text();
       navbarContainer.innerHTML = html;
-      loadMaterialize(); // Load styles *after* navbar is added
+  
+      // Now load Materialize and init components after it's fully loaded
+      loadMaterialize(() => {
+        M.AutoInit(); // optional
+        M.Sidenav.init(document.querySelectorAll(".sidenav"));
+        M.Dropdown.init(document.querySelectorAll(".dropdown-trigger"), {
+          hover: true,
+          alignment: 'right',
+          coverTrigger: false,
+        });
+        M.FormSelect.init(document.querySelectorAll("select"));
+      });
     }
   
     loadNavbar();
   </script>
+  
   
 </body>
 </html>
