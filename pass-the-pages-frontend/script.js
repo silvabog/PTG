@@ -43,6 +43,16 @@ function logout() {
 document.addEventListener("DOMContentLoaded", function () {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
 
+    const listingsLinks = document.querySelectorAll(".listings-link");
+    if (!isLoggedIn) {
+        listingsLinks.forEach(link => {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                window.location.href = "login.html";
+            });
+        });
+    }
+
     // Fetch navbar HTML and initialize components
     fetch("navbar.html")
         .then(response => response.text())
@@ -64,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // Show "Messages" option only if logged in
                 document.getElementById("messages-link").style.display = "block";
+                document.getElementById("donate-link").style.display = "block";
             } else {
                 // Add event listeners to links that require login
                 document.getElementById("profile-link").addEventListener("click", function (event) {

@@ -582,20 +582,6 @@ ul.dropdown-content {
   opacity: 0.85;
 }
 
-.page-booklisting-bg::after {
-  content: "";
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 150px;
-  height: 150px;
-  background-image: url('img/stack.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.1;
-  z-index: 0;
-  pointer-events: none;
-}
 
 .booklisting-form-group {
   border-left: 3px solid rgb(14, 45, 79);
