@@ -646,6 +646,153 @@ ul.dropdown-content {
   padding-left: 10px;
 }
 
+/* === About Us Page Enhanced Styles === */
+.aboutus-body-container {
+  background: linear-gradient(to bottom, #f0f2f5, #e9edf1);
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.aboutus-main-content {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 30px 60px;
+  background-color: #fbfcfd;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* === Header === */
+.aboutus-header-section {
+  text-align: center;
+  padding: 50px 30px 30px;
+  background: linear-gradient(to right, rgb(14, 45, 79), #1a568e);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  margin: -1px -30px 0; /* Stretch full width of the white box */
+}
+
+
+.aboutus-title {
+  color: #ffffff;
+  font-size: 36px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.aboutus-subtitle {
+  font-size: 18px;
+  color: #d0d0d0;
+  margin-bottom: 0;
+}
+
+/* === Sections === */
+.aboutus-section-heading {
+  color: rgb(14, 45, 79);
+  font-size: 26px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  border-left: 5px solid rgb(14, 45, 79);
+  padding-left: 15px;
+}
+
+.aboutus-paragraph {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+.aboutus-list {
+  list-style: none;
+  padding-left: 0;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.aboutus-list li {
+  font-size: 16px;
+  padding: 12px 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 5px solid rgb(14, 45, 79);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* === Team Section === */
+.aboutus-story-section,
+.aboutus-team-section {
+  background-color: #eff3f6;
+  padding: 50px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 40px;
+}
+
+.aboutus-mission-section {
+  background-color: #eff3f6;
+  padding: 50px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 40px;
+}
+
+.aboutus-team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.aboutus-team-member-card {
+  flex: 1 1 280px;
+  background: #f9f9f9;
+  border-left: 6px solid rgb(14, 45, 79);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aboutus-team-member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.aboutus-team-member-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: rgb(14, 45, 79);
+  margin-bottom: 8px;
+}
+
+.aboutus-team-member-role {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.aboutus-team-member-email {
+  font-size: 15px;
+  color: #666;
+  word-break: break-word;
+}
+
+.aboutus-section-divider {
+  height: 2px;
+  background-color: #dbe2ea;
+  width: 100%;
+  margin: 40px 0;
+  border-radius: 2px;
+}
+
 
 
 

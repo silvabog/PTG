@@ -105,6 +105,14 @@ document.addEventListener("DOMContentLoaded", function () {
     M.FormSelect.init(document.querySelectorAll("select"));
 });
 
+//Fetch footer
+fetch('footer.html')
+.then(response => response.text())
+.then(data => {
+  document.getElementById('footer-placeholder').innerHTML = data;
+})
+.catch(error => console.error('Error loading footer:', error));
+
 
 // Register
 document.getElementById("registerForm")?.addEventListener("submit", async (event) => {

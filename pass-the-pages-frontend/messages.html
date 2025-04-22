@@ -7,28 +7,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Enable dropdown on hover */
-    ul.dropdown-content {
-      display: none;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0s linear 0.3s;
-    }
-
-    .dropdown-trigger:hover + .dropdown-content,
-    .dropdown-content:hover {
-      display: block !important;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.3s ease, visibility 0s linear 0s;
-    }
-
-    .dropdown-content {
-      left: auto !important;
-      right: -80px !important;
-      top: 100% !important;
-    }
-
     .chat-box {
       max-height: 300px;
       overflow-y: auto;
@@ -70,6 +48,8 @@
     </div>
   </div>
   
+        <!-- Footer -->
+        <div id="footer-placeholder"></div>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
