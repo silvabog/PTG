@@ -1,28 +1,7 @@
 const apiUrl = "http://localhost:5000"; 
 let authToken = "";
 
-// Function to handle book listing
-function displayBooks() {
-    const bookList = document.querySelector(".book-list");
-    if (!bookList) return;
 
-    const books = [
-        { title: "Intro to Python", author: "John Doe", price: "$20" },
-        { title: "Business 101", author: "Jane Smith", price: "$15" },
-        { title: "Marketing Strategies", author: "Mike Johnson", price: "$18" }
-    ];
-
-    books.forEach(book => {
-        let bookCard = document.createElement("div");
-        bookCard.innerHTML = `
-            <h4>${book.title}</h4>
-            <p>by ${book.author}</p>
-            <p>Price: ${book.price}</p>
-        `;
-        bookCard.classList.add("book-card");
-        bookList.appendChild(bookCard);
-    });
-}
 
 // Login User
 document.getElementById("loginForm")?.addEventListener("submit", async (event) => {
@@ -408,4 +387,41 @@ async function displayAllBooks() {
     }
 }
 
-  
+//Adding books
+document.getElementById("addBookForm")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const title = document.getElementById("bookTitle").value.trim();
+    const author = document.getElementById("bookAuthor").value.trim();
+    const description = document.getElementById("bookDescription").value.trim();
+    const condition = document.getElementById("bookCondition").value;
+    const subject = document.getElementById("bookSubject").value;
+
+    if (title && author && subject && condition) {
+        const newBook = { title, author, description, condition, subject };
+
+        try {
+            const response = await fetch(`${apiUrl}/books`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${authToken}`
+                },
+                body: JSON.stringify(newBook)
+            });
+
+            const data = await response.json();
+            if (data.message === "Book added successfully!") {
+                alert("Book added successfully!");
+                window.location.href = "index.html"; // Redirect to homepage or listings
+            } else {
+                alert("Failed to add book.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("An error occurred while adding the book.");
+        }
+    } else {
+        alert("Please fill in all required fields.");
+    }
+});

@@ -4,56 +4,95 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Listings - Book Swap</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Enable dropdown on hover */
-ul.dropdown-content {
-display: none;
-opacity: 0;
-visibility: hidden;
-transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Smooth transition */
-}
-
-/* Show the dropdown when hovering over the trigger */
-.dropdown-trigger:hover + .dropdown-content,
-.dropdown-content:hover {
-display: block !important;
-opacity: 1;
-visibility: visible;
-transition: opacity 0.3s ease, visibility 0s linear 0s; /* Transition in */
-}
-
-/* Position the dropdown under the 'My Account' button */
-.dropdown-content {
-left: auto !important;  /* Align the dropdown to the left of the trigger */
-right: -80px !important;  /* Disable default right alignment */
-top: 100% !important;  /* Position it just below the trigger */
-} 
-  </style>
 </head>
-<body>
-  <!-- Navbar (Dynamically Loaded) -->
+<body class="page-booklisting-bg">
   <div id="navbar-container"></div>
 
-  <div class="container">
-    <h3 class="center-align">Books I'm Offering to Trade</h3>
+  <div class="booklisting-form-wrapper">
+    <img src="img/book-swap.png" class="booklisting-header-icon" alt="book icon">
+    <h2 class="booklisting-header-title">Add Your Book to Listings</h2>
+    <form id="addBookForm" class="booklisting-form-structure">
+      <div class="booklisting-form-group">
+        <label for="bookTitle" class="booklisting-label">Book Title</label>
+        <input type="text" id="bookTitle" class="booklisting-text-input" required>
+      </div>
 
-    <ul class="collection" id="listings">
-      <!-- Listings will be added dynamically -->
-    </ul>
+      <div class="booklisting-form-group">
+        <label for="bookAuthor" class="booklisting-label">Author</label>
+        <input type="text" id="bookAuthor" class="booklisting-text-input" required>
+      </div>
 
-    <div class="input-field">
-      <input type="text" id="listingInput" placeholder="Add a book you're trading" />
-      <button class="btn green" onclick="addListing()">Add</button>
-    </div>
+      <div class="booklisting-form-group">
+        <label for="bookDescription" class="booklisting-label">Description (Optional)</label>
+        <textarea id="bookDescription" class="booklisting-textarea"></textarea>
+      </div>
+
+      <div class="booklisting-form-group">
+        <label for="bookCondition" class="booklisting-label">Condition</label>
+        <select id="bookCondition" class="booklisting-select-dropdown" required>
+          <option value="Like New">Like New</option>
+          <option value="Good">Good</option>
+          <option value="Acceptable">Acceptable</option>
+          <option value="Bad">Bad</option>
+        </select>
+      </div>
+
+      <div class="booklisting-form-group">
+        <label for="bookSubject" class="booklisting-label">Subject</label>
+        <select id="bookSubject" class="booklisting-select-dropdown" required>
+          <option value="Business">Business</option>
+          <option value="Health">Health</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Education">Education</option>
+          <option value="Liberal Arts">Liberal Arts</option>
+          <option value="Criminal Justice">Criminal Justice</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+
+      <button type="submit" class="booklisting-submit-button">Add Book</button>
+    </form>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="script.js"></script>
+  <div class="booklisting-info-box">
+    <h4><i class="material-icons left">info</i> Listing Tips</h4>
+    <ul>
+      <li>📚 Be clear and specific in your description.</li>
+      <li>📷 Add a photo if supported later.</li>
+      <li>✅ Choose the right condition & subject.</li>
+    </ul>
+  </div>
 
- 
+  <script src="script.js"></script>
+  <script>
+    // Load Materialize CSS and JS dynamically
+    function loadMaterialize() {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css';
+      document.head.appendChild(css);
+  
+      const js = document.createElement('script');
+      js.src = 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js';
+      js.onload = () => {
+        // Initialize dropdowns or other Materialize features after it's loaded
+        M.AutoInit();
+      };
+      document.body.appendChild(js);
+    }
+  
+    // Inject navbar and load Materialize only for it
+    async function loadNavbar() {
+      const navbarContainer = document.getElementById('navbar-container');
+      const response = await fetch('navbar.html'); // Load your navbar HTML
+      const html = await response.text();
+      navbarContainer.innerHTML = html;
+      loadMaterialize(); // Load styles *after* navbar is added
+    }
+  
+    loadNavbar();
+  </script>
+  
 </body>
 </html>

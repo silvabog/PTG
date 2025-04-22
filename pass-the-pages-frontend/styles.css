@@ -461,6 +461,148 @@ ul.dropdown-content {
 }
 
 
+/*    Publish/add books      */
+
+/* Page Background */
+.page-booklisting-bg {
+  background-color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Form Wrapper */
+.booklisting-form-wrapper {
+  width: 90%;
+  max-width: 650px;
+  margin: 60px auto;
+  background-color: #ffffff;
+  padding: 40px 35px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid rgb(14, 45, 79);
+}
+
+/* Header */
+.booklisting-header-title {
+  text-align: center;
+  color: rgb(14, 45, 79);
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.booklisting-header-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: rgb(14, 45, 79);
+  margin: 10px auto 0 auto;
+  border-radius: 4px;
+}
+
+/* Form Layout */
+.booklisting-form-structure {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.booklisting-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.booklisting-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(14, 45, 79);
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+.booklisting-text-input,
+.booklisting-select-dropdown,
+.booklisting-textarea {
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  background-color: #fafafa;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.booklisting-text-input:focus,
+.booklisting-select-dropdown:focus,
+.booklisting-textarea:focus {
+  border-color: rgb(14, 45, 79);
+  box-shadow: 0 0 0 3px rgba(14, 45, 79, 0.15);
+  background-color: #fff;
+}
+
+/* Textarea specific */
+.booklisting-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Button */
+.booklisting-submit-button {
+  padding: 14px;
+  background-color: rgb(14, 45, 79);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.booklisting-submit-button:hover {
+  background-color: rgb(10, 35, 62);
+  transform: translateY(-1px);
+}
+
+/* Optional: subtle hover for inputs */
+.booklisting-text-input:hover,
+.booklisting-select-dropdown:hover,
+.booklisting-textarea:hover {
+  background-color: #fefefe;
+  border-color: #bbb;
+}
+.booklisting-header-icon {
+  display: block;
+  margin: 0 auto 10px auto;
+  width: 60px;
+  height: auto;
+  opacity: 0.85;
+}
+
+.page-booklisting-bg::after {
+  content: "";
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  height: 150px;
+  background-image: url('img/stack.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.booklisting-form-group {
+  border-left: 3px solid rgb(14, 45, 79);
+  padding-left: 10px;
+}
+
+
 
 
 
