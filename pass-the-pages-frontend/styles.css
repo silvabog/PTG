@@ -164,66 +164,124 @@
 /* ==========================
      Login & Registration Forms
      ========================== */
-     .auth-container {
-      max-width: 400px;
-      width: 100%;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      margin: auto;
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
-    
-    .auth-container h4 {
-      margin-bottom: 20px;
-      font-weight: 600;
-      color: rgb(14, 45, 79);
-    }
-    
-    .input-field input {
-      background-color: #f9f9f9;
-      border-radius: 5px;
-      padding: 12px;
-      border: 1px solid #ddd;
-      width: 100%;
-    }
-    
-    .btn-auth {
-      width: 100%;
-      background-color: rgb(14, 45, 79);
-      color: white;
-      transition: 0.3s;
-      padding: 12px;
-      border-radius: 5px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .btn-auth:hover {
-      background-color: rgb(14, 45, 79);
-    }
-    
-    .auth-message {
-      margin-top: 10px;
-      font-size: 14px;
-      color: red;
-    }
-    
-    .auth-link {
-      margin-top: 15px;
-      display: block;
-      font-size: 14px;
-      color: rgb(14, 45, 79);
-      text-decoration: none;
-    }
-    
-    .auth-link:hover {
-      text-decoration: underline;
-    }
+
+ /* Page Background */
+.page-auth-bg {
+  background-color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Auth Container */
+.auth-container {
+  width: 90%;
+  max-width: 420px;
+  margin: 60px auto;
+  background-color: #ffffff;
+  padding: 40px 35px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid rgb(14, 45, 79);
+  text-align: center;
+}
+
+/* Auth Header */
+.auth-container h4 {
+  color: rgb(14, 45, 79);
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.auth-container h4::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: rgb(14, 45, 79);
+  margin: 10px auto 0 auto;
+  border-radius: 4px;
+}
+
+/* Input Group */
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-field label {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(14, 45, 79);
+  margin-bottom: 6px;
+}
+
+/* Inputs */
+.input-field input {
+  background-color: #fafafa;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-field input:focus {
+  border-color: rgb(14, 45, 79);
+  box-shadow: 0 0 0 3px rgba(14, 45, 79, 0.15);
+  background-color: #fff;
+}
+
+.input-field input:hover {
+  background-color: #fefefe;
+  border-color: #bbb;
+}
+
+/* Auth Button */
+.btn-auth {
+  width: 100%;
+  padding: 14px;
+  background-color: rgb(14, 45, 79);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.btn-auth:hover {
+  background-color: rgb(10, 35, 62);
+  transform: translateY(-1px);
+}
+
+/* Messages & Links */
+.auth-message {
+  margin-top: 12px;
+  font-size: 14px;
+  color: red;
+}
+
+.auth-link {
+  margin-top: 20px;
+  display: block;
+  font-size: 14px;
+  color: rgb(14, 45, 79);
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
     
 
   
